@@ -416,7 +416,7 @@ function PlayerController:GetActionButtonAction(force_target)
         --"DECOR" should never change, should be safe to skip that check
         return
 
-    elseif self.actionbuttonoverride ~= nil then
+    elseif self.actionbuttonoverride ~= nil and not self.inst.replica.rider:IsRiding() then -- The only change in the fork I just made. -carolinarente
         local buffaction, usedefault = self.actionbuttonoverride(self.inst, force_target)
         if not usedefault or buffaction ~= nil then
             return buffaction
